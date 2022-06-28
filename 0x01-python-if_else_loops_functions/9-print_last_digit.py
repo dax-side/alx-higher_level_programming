@@ -5,5 +5,6 @@ def print_last_digit(number):
     else:
         ldigit = number % -10
         ldigit *= -1
- print("{:d}".format(ldigit), end='')
- return ldigit
+
+    print("{:d}".format(ldigit), end='')
+    return ldigit
