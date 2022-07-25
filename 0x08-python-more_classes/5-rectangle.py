@@ -1,77 +1,82 @@
 #!/usr/bin/python3
-"""5-rectangle Module
-Defines a rectangle with
-an input height and width
+"""
+    Defines a Rectangle class
 """
 
 
 class Rectangle:
-    """Rectangle class defined by width and height"""
-
+    """
+        defines a Rectangle class
+     """
     def __init__(self, width=0, height=0):
-        """Initializes a Rectangle class instance"""
-        self.width = width
-        self.height = height
+        """Instatiates class with optinal attributes.
+            atttributes:
+                width - the width of the rectangle
+                height - the height of the ractangle
+        """
+        self.__width = width
+        self.__height = height
 
     @property
     def width(self):
-        """Returns the value of the width"""
+        """ retrieve the width of the rectangle"""
         return self.__width
 
     @width.setter
     def width(self, value):
-        if type(value) != int:
-            """Returns a typeerror if NaN"""
+        """ Sets the width of the reactangle"""
+        if value < 0:
+            raise ValueError("width must be >=0")
+        if (not isinstance(value, int)):
             raise TypeError("width must be an integer")
-        elif value < 0:
-            """Returns a valueerror if value is less than 0"""
-            raise ValueError("width must be >= 0")
         else:
-            """Sets the width value"""
             self.__width = value
 
     @property
     def height(self):
-        """Returns the value of the height"""
+        """Retirves the height of rectangle"""
         return self.__height
 
     @height.setter
     def height(self, value):
-        if type(value) != int:
-            """returns a typeerror if value is NaN"""
-            raise TypeError("height must be an integer")
-        elif value < 0:
-            """returns a valueerror if value is less than 0"""
+        """Sets the height of rectangle"""
+        if value < 0:
             raise ValueError("height must be >= 0")
+        if (not isinstance(value, int)):
+            raise TypeError("height must be an integer")
         else:
-            """sets the height value"""
             self.__height = value
 
-
     def area(self):
-        """returns the area of the rectangle"""
-        return self.__height * self.__width
+        """Returns the area of the rectangle"""
+        return (self.__width * self.__height)
 
     def perimeter(self):
         """returns the perimeter of the rectangle"""
         if self.__width == 0 or self.__height == 0:
-            """returns 0 if either width or height is 0"""
-            return 0
-        return 2 * (self.__height + self.__width)
+            return (0)
+        else:
+            return (2 * (self.__width + self.__height))
 
     def __str__(self):
-        """returns 0 if either value is 0"""
-        if self.__height == 0 or self.__width == 0:
-            return ''
-        """Returns a string representation of a rectangle"""
-        return '\n'.join('#' * self.__width for _ in range(self.__height))
+        """prints object as string"""
+        if self.__width == 0 or self.__height == 0:
+            return ("")
+
+        else:
+            rect = []
+            for h in range(self.__height):
+                [rect.append("#") for w in range(self.__width)]
+                if h != self.__height - 1:
+                    rect.append("\n")
+            return ("".join(rect))
 
     def __repr__(self):
-        """Returns a string representation of a Rectangle instance
-        that is able to recreate a new instance
-        """
-        return "Rectangle({}, {})".format(self.__width, self.__height)
+        """return a string representation of rectangle"""
+        rect = "Rectangle(" + str(self.__width)
+        rect += ", " + str(self.__height) + ")"
+        return rect
 
     def __del__(self):
-        """Deletes a Rectangle instance"""
+        """garbage collector that destroys an object"""
         print("Bye rectangle...")
