@@ -1,1 +1,1 @@
-This directory is about sql intodouction
+This directory is about introduction to sql
